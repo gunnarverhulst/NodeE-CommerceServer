@@ -13,9 +13,6 @@ module.exports = createCoreController('api::order.order', ({ strapi }) =>  ({
         const {name, total, items, stripeTokenId} = ctx.request.body.data;
         const {id} = ctx.state.user;
 
-        console.log(id);
-
-
         const charge = await stripe.charges.create({
             // Transform cents to dollars.
             amount: total * 100,
@@ -23,8 +20,6 @@ module.exports = createCoreController('api::order.order', ({ strapi }) =>  ({
             description: `Order ${new Date()} by ${ctx.state.user.id}`,
             source: stripeTokenId,
         });
-
-        console.log(charge);
 
         const order = await strapi.service('api::order.order').create({
 
@@ -36,8 +31,6 @@ module.exports = createCoreController('api::order.order', ({ strapi }) =>  ({
                 items: items
             }
         });
-
-        console.log(order);
 
         return order;
     }
