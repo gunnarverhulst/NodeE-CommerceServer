@@ -1,0 +1,6 @@
+strapi local login
+Administrator
+firstname: gunnar
+lastname: verhuslt
+email: verhulstg@hotmail.com
+password: Nuke2023
